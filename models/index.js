@@ -1,11 +1,15 @@
 const Sequelize = require('sequelize');
 //const db = new Sequelize('postgres://localhost:1337/wikistack');
-const db = new Sequelize('postgres://localhost:5432/wikistack', {
+const db = new Sequelize('postgres://localhost:5432/wikistack', { // Use default db server 5432 b/c DB has it's own host
+// db is a client database.
+
+// Web browser is the client. App is the server. App is also the client for your database.
+
     logging: false
 });
 
-db.authenticate().
-then(() => {
+db.authenticate()
+.then(() => {
   console.log('connected to the database');
 })
 
