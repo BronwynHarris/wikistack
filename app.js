@@ -7,9 +7,18 @@ const { db } = require('./models');
 // const db = new Sequelize('postgres://localhost:5432/your-db')
 
 const PORT = 1337;
-app.listen(PORT, ()=> {
-  console.log(`Server is listening on port ${PORT}`);
-})
+// app.listen(PORT, ()=> {
+//   console.log(`Server is listening on port ${PORT}`);
+// });
+
+const init = async () => {
+  await models.db.sync({force: true})//should we include await?
+  app.listen(PORT, ()=> {
+    console.log(`Server is listening on port ${PORT}`);
+  });
+}
+
+init();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
